@@ -1,5 +1,10 @@
 #!/usr/bin/perl
+#
+# generador del joc de Mandelbrot
+#
+
 use CGI;
+
 my $cgi = new CGI;
 print $cgi->header . $cgi->start_html('Joc Mandelbrot');
 print '<table border="0" cellspacing="0" cellpadding="0">';
@@ -24,30 +29,27 @@ for(my $iy = 0; $iy < $ny; $iy++) {
 
     for(my $ix = 0; $ix < $nx; $ix++) {
 
-	my $cx = $xmin + $ix * $xprop;
+        my $cx = $xmin + $ix * $xprop;
 
-	# iteración
+        # iteración
+        my $iter = 0;
+        # hasta que llegue al número de iteraciones máximas o
+        # escapa de la órbita del joc
+        while( ($iter < $maxiter) && (($x2 + $y2) < $limite)) {
+            # formula és z -> z^2 + c
+            my $temp = $x2 - $y2 + $cx;
+            $y = 2 * $x * $y + $cy;
+            $x = $temp;
+            $x2 = $x * $x;
+            $y2 = $y * $y;
+            $iter++;
+        }
 
-	my ($x, $y, $x2, $y2) = 0.0;
-	my $iter = 0;
-
-	while( ($iter < $maxiter) && (($x2 + $y2) < $limite)) {
-
-	    # formula es z -> z^2 + c
-	    
-	    my $temp = $x2 - $y2 + $cx;
-	    $y = 2 * $x * $y + $cy;
-	    $x = $temp;
-	    $x2 = $x^2;
-	    $y2 = $y^2;
-	    $iter++;
-	}
-	
-	if ($iter == $maxiter) {
-	    print '<td><img src="/images/0.png" /></td>';
-	} else {
-	    print '<td><img src="/images/1.png" /></td>';
-	}
+        if ($iter == $maxiter) {
+            print '<td><img src="0.png" /></td>';
+        } else {
+            print '<td><img src="1.png" /></td>';
+        }
     }
 
     print '</tr>';
