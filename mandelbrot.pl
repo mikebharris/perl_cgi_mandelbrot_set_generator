@@ -9,13 +9,13 @@ my $cgi = new CGI;
 print $cgi->header . $cgi->start_html('Joc Mandelbrot');
 print '<table border="0" cellspacing="0" cellpadding="0">';
 
-my $nx = 320; # resolucion en x
-my $ny = 240; # resolucion en y
+my $nx = 640; # resolución en x
+my $ny = 480; # resolución en y
 my $xmin = -2.25; # valor mínimo en plano real
 my $xmax = 0.75; # valor máximo en plano real
-my $ymin = -1.5; # valor mínimo en plano imaginario
-my $ymax = 1.5; # valor máximo en plano imaginario
-my $maxiter = 60; # número máximo de iteraciones
+my $ymin = -1.25; # valor mínimo en plano imaginario
+my $ymax = 1.25; # valor máximo en plano imaginario
+my $maxiter = 100; # número máximo de iteraciones
 my $limite = 10000.0; # límite considerado y valor tiende a infinidad
 
 my $xprop = ($xmax - $xmin) / ($nx - 1);
