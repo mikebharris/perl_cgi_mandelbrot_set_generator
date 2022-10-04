@@ -32,6 +32,7 @@ for(my $iy = 0; $iy < $ny; $iy++) {
         my $cx = $xmin + $ix * $xprop;
 
         # iteración
+        my ($x, $y, $x2, $y2) = (0.0, 0.0, 0.0, 0.0);
         my $iter = 0;
         # hasta que llegue al número de iteraciones máximas o
         # escapa de la órbita del joc
